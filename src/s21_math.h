@@ -3,7 +3,7 @@
 
 #include <float.h>
 #include <stdio.h>
-#include <stdlib.h>
+// #include <stdlib.h> ///?
 
 #define S21_E 2.71828182845904523536028747135266250
 #define S21_PI 3.14159265358979324
