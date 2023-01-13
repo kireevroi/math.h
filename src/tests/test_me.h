@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <limits.h>
 
 #include "../s21_math.h"
 
