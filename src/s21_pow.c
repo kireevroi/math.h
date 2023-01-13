@@ -1,6 +1,5 @@
-#include <math.h>  // ВРЕМЕННО
-
 #include "s21_math.h"
+#include <math.h>
 long double s21_pow(double base, double exp) {
   long double result = 0;
   if (base != base)
@@ -9,7 +8,8 @@ long double s21_pow(double base, double exp) {
     result = S21_INF;
   else if (base == 0. && exp == 0.)
     result = 1;
-  else
-    result = s21_exp((long double)exp * s21_log(fabs(base))); // FABS?
+  else {
+    result = s21_exp((long double)exp * s21_log(s21_fabs(base)));
+  }
   return result;
 }

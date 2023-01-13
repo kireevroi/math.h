@@ -11,7 +11,7 @@ long double s21_exp(double x) {
   } else if (x < 0) {
     ret = 1. / s21_exp(-x);
   } else {
-    for (int i = 1; z > S21_EPS / 10 && ret < LDBL_MAX; i++) {
+    for (int i = 1; z > 1e-17 && ret < LDBL_MAX; i++) {
       z = z * x / i;
       ret += z;
     }

@@ -3,7 +3,9 @@
 START_TEST(s21_pow_0) {
 double a = 21.287287;
 double b = 7.453;
-ck_assert_ldouble_eq_tol(s21_pow(a, b), powl(a, b), S21_EPS);
+printf("%.7Lf %.7lf\n", s21_exp((long double)b * s21_log(s21_fabs(a))), exp((long double)b * (long double)log(s21_fabs((long double)a))));
+printf("%.7Lf %.7f %.7Lf\n", s21_pow(a, b), pow(a, b), powl(a,b));
+ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
 }
 END_TEST
 
@@ -117,7 +119,7 @@ START_TEST(s21_pow_15) {
     long double x = S21_EPS;
     if (isfinite(pow(a, num))) {
       if (floorl(log10l(pow(a, num))) >= 10)
-        x = S21_EPS * powl(10, floorl(log10l(powl(a, num))) - 10);
+        x = S21_EPS * pow(10, floorl(log10l(pow(a, num))) - 10);
       ck_assert_ldouble_eq_tol(s21_pow(a, num), pow(a, num), x);
     }
   }
