@@ -76,6 +76,22 @@ START_TEST(s21_asin_12) {
 }
 END_TEST
 
+START_TEST(s21_asin_13) {
+  srand(time(NULL));
+  for (double num = S21_EPS; num < 1;
+       num *= (rand() % 10000) / 1000000. + 1.01) {
+    ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  }
+}
+
+START_TEST(s21_asin_14) {
+  srand(time(NULL));
+  for (double num = -S21_EPS; num > -1;
+       num *= (rand() % 10000) / 1000000. + 1.01) {
+    ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  }
+}
+
 Suite *test_s21_asin(void) {
   Suite *s = suite_create("\033[45m-=S21_ASIN=-\033[0m");
   TCase *tc = tcase_create("s21_asin_tc");
@@ -92,6 +108,8 @@ Suite *test_s21_asin(void) {
   tcase_add_test(tc, s21_asin_10);
   tcase_add_test(tc, s21_asin_11);
   tcase_add_test(tc, s21_asin_12);
+  tcase_add_test(tc, s21_asin_13);
+  tcase_add_test(tc, s21_asin_14);
 
   suite_add_tcase(s, tc);
   return s;
