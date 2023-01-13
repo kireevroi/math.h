@@ -152,11 +152,12 @@ START_TEST(s21_fmod_21) {
        num *= (rand() % 10000) / 1000000. + 3.02) {
     double a = (rand() % 10) + rand() % 100 * S21_EPS;
     long double x = S21_EPS;
-      if (floorl(log10l(fmod(a, num))) >= 10)
-        x = S21_EPS * pow(10, floorl(log10l(fmod(a, num))) - 10);
+    if (floorl(log10l(fmod(a, num))) >= 10)
+      x = S21_EPS * pow(10, floorl(log10l(fmod(a, num))) - 10);
     ck_assert_ldouble_eq_tol(s21_fmod(a, num), fmod(a, num), x);
   }
-}END_TEST
+}
+END_TEST
 
 START_TEST(s21_fmod_22) {
   srand(time(NULL));
@@ -164,11 +165,12 @@ START_TEST(s21_fmod_22) {
        num /= (rand() % 10000) / 1000000. + 3.02) {
     double a = (rand() % 10) + rand() % 100 * S21_EPS;
     long double x = S21_EPS;
-      if (floorl(log10l(fmod(a, num))) >= 10)
-        x = S21_EPS * pow(10, floorl(log10l(fmod(a, num))) - 10);
+    if (floorl(log10l(fmod(a, num))) >= 10)
+      x = S21_EPS * pow(10, floorl(log10l(fmod(a, num))) - 10);
     ck_assert_ldouble_eq_tol(s21_fmod(a, num), fmod(a, num), x);
   }
-}END_TEST
+}
+END_TEST
 
 Suite *test_s21_fmod(void) {
   Suite *s = suite_create("\033[45m-=S21_FMOD=-\033[0m");

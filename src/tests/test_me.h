@@ -2,10 +2,10 @@
 #define SRC_TESTS_ME_H
 
 #include <check.h>
+#include <limits.h>
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <limits.h>
 
 #include "../s21_math.h"
 

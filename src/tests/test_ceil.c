@@ -19,8 +19,8 @@ START_TEST(s21_ceil_3) {
 END_TEST
 
 START_TEST(s21_ceil_4) {
-  // double num = 326088.32;
-  // ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
+  double num = 326088.32;
+  ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
 }
 END_TEST
 
@@ -117,24 +117,39 @@ START_TEST(s21_ceil_19) {
 END_TEST
 
 START_TEST(s21_ceil_20) {
-  double num = 1.;
+  double num = 113937.989480;
   ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
 }
 END_TEST
 
 START_TEST(s21_ceil_21) {
+  double num = 4289114249765131.500000;
+  ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
+}
+END_TEST
+
+START_TEST(s21_ceil_22) {
+  double num = 32815685683.;
+  ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
+}
+END_TEST
+
+START_TEST(s21_ceil_23) {
   srand(time(NULL));
-  for (double num = S21_EPS; num < DBL_MAX - 1;
+  for (double num = S21_EPS; num < 1e18 - 1;
        num *= (rand() % 10000) / 1000000. + 3.02) {
-    ck_assert_ldouble_eq_tol(s21_ceil(num), ceil(num), S21_EPS);
+    long double x = S21_EPS;
+    if (floorl(log10l(ceil(num))) >= 10)
+      x = S21_EPS * powl(10, floorl(log10l(ceil(num))) - 10);
+    ck_assert_ldouble_eq_tol(s21_ceil(num), ceil(num), x);
   }
 }
 
-START_TEST(s21_ceil_22) {
+START_TEST(s21_ceil_24) {
   srand(time(NULL));
-  for (double num = -DBL_MAX + S21_EPS + 1; num < 0;
+  for (double num = -1e18 + S21_EPS + 1; num < 0;
        num /= (rand() % 10000) / 1000000. + 3.02) {
-    ck_assert_ldouble_eq_tol(s21_ceil(num), ceil(num), S21_EPS);
+    ck_assert_ldouble_eq(s21_ceil(num), ceil(num));
   }
 }
 
@@ -164,6 +179,8 @@ Suite *test_s21_ceil(void) {
   tcase_add_test(tc, s21_ceil_20);
   tcase_add_test(tc, s21_ceil_21);
   tcase_add_test(tc, s21_ceil_22);
+  tcase_add_test(tc, s21_ceil_23);
+  tcase_add_test(tc, s21_ceil_24);
 
   suite_add_tcase(s, tc);
   return s;

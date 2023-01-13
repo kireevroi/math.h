@@ -11,10 +11,10 @@ long double s21_floor(double a) {
     if (a < 0) {
       a *= -1;
       sign++;
-      int b = (int)a;
-      res = (a != b) ? (int)(a + 1.) : (int)a;
+      long int b = (long int)a;
+      res = (a != b) ? (long int)(a + 1.) : (long int)a;
     } else
-      res = (int)a;
+      res = (long int)a;
   }
   if (sign) {
     res *= -1;

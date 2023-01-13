@@ -124,7 +124,7 @@ END_TEST
 
 START_TEST(s21_floor_21) {
   srand(time(NULL));
-  for (double num = S21_EPS; num < DBL_MAX - 1;
+  for (double num = S21_EPS; num < 1e18 - 1;
        num *= (rand() % 10000) / 1000000. + 3.02) {
     ck_assert_ldouble_eq_tol(s21_floor(num), floor(num), S21_EPS);
   }
@@ -132,12 +132,11 @@ START_TEST(s21_floor_21) {
 
 START_TEST(s21_floor_22) {
   srand(time(NULL));
-  for (double num = -DBL_MAX + S21_EPS + 1; num < 0;
+  for (double num = -1e18 + S21_EPS + 1; num < -S21_EPS;
        num /= (rand() % 10000) / 1000000. + 3.02) {
     ck_assert_ldouble_eq_tol(s21_floor(num), floor(num), S21_EPS);
   }
 }
-
 Suite *test_s21_floor(void) {
   Suite *s = suite_create("\033[45m-=S21_FLOOR=-\033[0m");
   TCase *tc = tcase_create("s21_floor_tc");

@@ -102,8 +102,7 @@ START_TEST(s21_exp_13) {
     long double x = S21_EPS;
     if (floorl(log10l(expl(num))) >= 10)
       x = S21_EPS * powl(10, floorl(log10l(expl(num))) - 10);
-    ck_assert_ldouble_eq_tol(s21_exp(num), expl(num),
-                             x);
+    ck_assert_ldouble_eq_tol(s21_exp(num), expl(num), x);
   }
 }
 END_TEST
