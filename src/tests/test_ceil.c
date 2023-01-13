@@ -122,6 +122,22 @@ START_TEST(s21_ceil_20) {
 }
 END_TEST
 
+START_TEST(s21_ceil_21) {
+  srand(time(NULL));
+  for (double num = S21_EPS; num < DBL_MAX - 1;
+       num *= (rand() % 10000) / 1000000. + 3.02) {
+    ck_assert_ldouble_eq_tol(s21_ceil(num), ceil(num), S21_EPS);
+  }
+}
+
+START_TEST(s21_ceil_22) {
+  srand(time(NULL));
+  for (double num = -DBL_MAX + S21_EPS + 1; num < 0;
+       num /= (rand() % 10000) / 1000000. + 3.02) {
+    ck_assert_ldouble_eq_tol(s21_ceil(num), ceil(num), S21_EPS);
+  }
+}
+
 Suite *test_s21_ceil(void) {
   Suite *s = suite_create("\033[45m-=S21_CEIL=-\033[0m");
   TCase *tc = tcase_create("s21_ceil_tc");
@@ -146,6 +162,8 @@ Suite *test_s21_ceil(void) {
   tcase_add_test(tc, s21_ceil_18);
   tcase_add_test(tc, s21_ceil_19);
   tcase_add_test(tc, s21_ceil_20);
+  tcase_add_test(tc, s21_ceil_21);
+  tcase_add_test(tc, s21_ceil_22);
 
   suite_add_tcase(s, tc);
   return s;

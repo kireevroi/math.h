@@ -60,6 +60,17 @@ START_TEST(s21_sqrt_9) {
 }
 END_TEST
 
+START_TEST(s21_sqrt_10) {
+  srand(time(NULL));
+  for (double num = S21_EPS * S21_EPS; num < DBL_MAX;
+       num *= (rand() % 10000) / 1000000. + 3.02) {
+    long double x = S21_EPS;
+    if (floorl(log10l(sqrt(num))) >= 10)
+      x = S21_EPS * powl(10, floorl(log10l(sqrt(num))) - 10);
+    ck_assert_ldouble_eq_tol(s21_sqrt(num), sqrt(num), x);
+  }
+}
+
 Suite *test_s21_sqrt(void) {
   Suite *s = suite_create("\033[45m-=S21_SQRT=-\033[0m");
   TCase *tc = tcase_create("s21_sqrt_tc");
@@ -73,6 +84,7 @@ Suite *test_s21_sqrt(void) {
   tcase_add_test(tc, s21_sqrt_7);
   tcase_add_test(tc, s21_sqrt_8);
   tcase_add_test(tc, s21_sqrt_9);
+  tcase_add_test(tc, s21_sqrt_10);
 
   suite_add_tcase(s, tc);
   return s;

@@ -96,16 +96,15 @@ START_TEST(s21_exp_12) {
 END_TEST
 
 START_TEST(s21_exp_13) {
-  // srand(time(NULL));
-  // for (double num = -logl(DBL_MAX); num <= logl(DBL_MAX);
-  //      num += (rand() % 10000) / 1000000. + 0.06) {
-  //   long double x = S21_EPS;
-  //   if (floorl(log10l(expl(num))) >= 10)
-  //     x = S21_EPS * powl(10, floorl(log10l(expl(num))) - 10);
-  //   ck_assert_ldouble_eq_tol(s21_exp(num), expl(num),
-  //                            x);  // expl иначе точность стандартной
-  //                            хромает...
-  // }
+  srand(time(NULL));
+  for (double num = -logl(DBL_MAX); num <= logl(DBL_MAX);
+       num += (rand() % 10000) / 1000000. + 0.06) {
+    long double x = S21_EPS;
+    if (floorl(log10l(expl(num))) >= 10)
+      x = S21_EPS * powl(10, floorl(log10l(expl(num))) - 10);
+    ck_assert_ldouble_eq_tol(s21_exp(num), expl(num),
+                             x);
+  }
 }
 END_TEST
 

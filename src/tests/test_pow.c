@@ -109,19 +109,20 @@ START_TEST(s21_pow_14) {
 }
 END_TEST
 
-// START_TEST(s21_pow_15) {
-//   srand(time(NULL));
-//   for (double num = -logl(DBL_MAX); num <= logl(DBL_MAX);
-//        num += (rand() % 10000) / 1000000. + 0.06) {
-//     long double x = S21_EPS;
-//     if (floorl(log10l(powl(num))) >= 10)
-//       x = S21_EPS * powl(10, floorl(log10l(powl(num))) - 10);
-//     ck_assert_ldouble_eq_tol(s21_pow(num), powl(num),
-//                              x);  // powl иначе точность стандартной
-//                              хромает...
-//   }
-// }
-// END_TEST
+START_TEST(s21_pow_15) {
+  srand(time(NULL));
+  for (double num = S21_EPS; num <= DBL_MAX - S21_EPS;
+       num *= (rand() % 10000) / 1000000. + 1.06) {
+    double a = (rand() % 10) + rand() % 100 * S21_EPS;
+    long double x = S21_EPS;
+    if (isfinite(pow(a, num))) {
+      if (floorl(log10l(pow(a, num))) >= 10)
+        x = S21_EPS * powl(10, floorl(log10l(powl(a, num))) - 10);
+      ck_assert_ldouble_eq_tol(s21_pow(a, num), pow(a, num), x);
+    }
+  }
+}
+END_TEST
 
 Suite *test_s21_pow(void) {
   Suite *s = suite_create("\033[45m-=S21_POW=-\033[0m");
@@ -142,6 +143,7 @@ Suite *test_s21_pow(void) {
   tcase_add_test(tc, s21_pow_12);
   tcase_add_test(tc, s21_pow_13);
   tcase_add_test(tc, s21_pow_14);
+  tcase_add_test(tc, s21_pow_15);
 
   suite_add_tcase(s, tc);
   return s;

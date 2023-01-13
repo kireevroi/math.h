@@ -6,6 +6,6 @@ long double s21_sqrt(double x) {
   if (x == S21_N_INF) ret = S21_NAN;
   if (x != x) ret = S21_NAN;
   if (x < 0) ret = S21_NAN;
-  if (x > S21_EPS) ret = s21_pow(x, 1. / 2.);
+  if (x > 0) ret = s21_pow(x, 0.5);
   return ret;
 }

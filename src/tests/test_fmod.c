@@ -146,6 +146,22 @@ START_TEST(s21_fmod_20) {
 }
 END_TEST
 
+START_TEST(s21_fmod_21) {
+  srand(time(NULL));
+  for (double num = S21_EPS; num < DBL_MAX - 1;
+       num *= (rand() % 10000) / 1000000. + 3.02) {
+    ck_assert_ldouble_eq_tol(s21_floor(num), floor(num), S21_EPS);
+  }
+}
+
+START_TEST(s21_fmod_22) {
+  srand(time(NULL));
+  for (double num = -DBL_MAX + S21_EPS + 1; num < 0;
+       num /= (rand() % 10000) / 1000000. + 3.02) {
+    ck_assert_ldouble_eq_tol(s21_floor(num), floor(num), S21_EPS);
+  }
+}
+
 Suite *test_s21_fmod(void) {
   Suite *s = suite_create("\033[45m-=S21_FMOD=-\033[0m");
   TCase *tc = tcase_create("s21_fmod_tc");
@@ -170,6 +186,8 @@ Suite *test_s21_fmod(void) {
   tcase_add_test(tc, s21_fmod_18);
   tcase_add_test(tc, s21_fmod_19);
   tcase_add_test(tc, s21_fmod_20);
+  tcase_add_test(tc, s21_fmod_21);
+  tcase_add_test(tc, s21_fmod_22);
 
   suite_add_tcase(s, tc);
   return s;
