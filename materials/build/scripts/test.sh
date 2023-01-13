@@ -39,6 +39,18 @@ printf 'Build output:\n %s\n' "$OUTPUT"
 BUILD_RESULT=${OUTPUT: -1}
 printf 'Build result: %s\n' "$BUILD_RESULT"
 echo -e "-------------------------------------------------------------------------------\n"
+TEST_SCRIPT=ci-scripts/tests.sh
+OUTPUT=$(bash ${TEST_SCRIPT} part1)
+printf 'Test output:\n %s\n' "$OUTPUT"
+TEST_RESULT=${OUTPUT: -1}
+printf 'Test result: %s\n' "$TEST_RESULT"
+echo -e "-------------------------------------------------------------------------------\n"
+VALGRIND_SCRIPT=ci-scripts/valgrind.sh
+OUTPUT=$(bash ${VALGRIND_SCRIPT} part1)
+printf 'Valgrind output:\n %s\n' "$OUTPUT"
+VALGRIND_RESULT=${OUTPUT: -1}
+printf 'Valgrind result: %s\n' "$VALGRIND_RESULT"
+echo -e "-------------------------------------------------------------------------------\n"
 echo -e "\n"
 
 

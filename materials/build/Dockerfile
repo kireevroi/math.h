@@ -10,6 +10,7 @@ RUN apk --no-cache --upgrade add \
     python3 \
     valgrind \
     cppcheck \
+    check-dev \
     alpine-sdk \
     pcre-dev \
     clang-extra-tools

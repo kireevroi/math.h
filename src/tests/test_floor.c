@@ -137,6 +137,7 @@ START_TEST(s21_floor_22) {
     ck_assert_ldouble_eq_tol(s21_floor(num), floor(num), S21_EPS);
   }
 }
+
 Suite *test_s21_floor(void) {
   Suite *s = suite_create("\033[45m-=S21_FLOOR=-\033[0m");
   TCase *tc = tcase_create("s21_floor_tc");

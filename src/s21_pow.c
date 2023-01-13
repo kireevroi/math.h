@@ -1,5 +1,5 @@
 #include "s21_math.h"
-#include <math.h>
+
 long double s21_pow(double base, double exp) {
   long double result = 0;
   if (base != base)
