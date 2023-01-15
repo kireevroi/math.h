@@ -11,7 +11,7 @@ long double ln_taylor(long double x) {
   return betta;
 }
 
-long double s21_ln(double x) {
+long double s21_ln(long double x) {
   long double n = 0;
   while (x < 0.5) {
     x *= S21_E;
@@ -28,7 +28,7 @@ long double s21_ln(double x) {
 long double s21_log(double x) {
   long double res = 0;
   if (x != x || x < 0)
-    res = S21_NAN;  // x == S21_N_INF
+    res = S21_NAN;
   else if (x == S21_INF)
     res = S21_INF;
   else if (x == 0)
