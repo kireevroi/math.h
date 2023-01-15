@@ -57,7 +57,7 @@ START_TEST(s21_atan_9) {
 END_TEST
 
 START_TEST(s21_atan_10) {
-  double num = -1.;
+  double num = -1;
   ck_assert_ldouble_eq_tol(s21_atan(num), atan(num), S21_EPS);
 }
 END_TEST
