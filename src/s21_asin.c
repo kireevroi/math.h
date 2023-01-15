@@ -9,7 +9,7 @@ long double s21_asin(double x) {
       if (s21_fabs(x) < 0.9999) {
         long double k = x;
         int i;
-        for (i = 1; s21_fabs(k / (2 * i - 1.)) > S21_EPS / 1000; ++i) {
+        for (i = 1; s21_fabs(k / (2 * i - 1.)) > S21_EPS / 10000.; ++i) {
           ret += k / (2 * i - 1.);
           k *= (2 * i) * (2 * i - 1.) / 4.0 / (i * i) * x * x;
         }
@@ -19,8 +19,8 @@ long double s21_asin(double x) {
         ret = S21_PI / 2 -
               s21_sqrt(1 - x) * (1.5707288 + -0.2121144 * x +
                                  0.0742610 * x * x + -0.0187293 * x * x * x);
-        // Milton Abramowitz and Irene Stegun in their book "Handbook of
-        // Mathematical Functions", p.81
+        // Milton Abramowitz and Irene Stegun
+        //"Handbook of Mathematical Functions", p.81
         ret *= sign;
       }
     }
