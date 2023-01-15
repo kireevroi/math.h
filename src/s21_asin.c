@@ -1,7 +1,5 @@
-#include <math.h>
-#include <stdio.h>
-
 #include "s21_math.h"
+
 long double s21_asin(double x) {
   long double ret = 0;
   if (s21_fabs(x) <= 1) {
