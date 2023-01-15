@@ -1,5 +1,4 @@
 #include "test_me.h"
-
 START_TEST(s21_asin_1) {
   double num = NAN;
   ck_assert_ldouble_nan(s21_asin(num));
@@ -47,7 +46,51 @@ START_TEST(s21_asin_7) {
 END_TEST
 
 START_TEST(s21_asin_8) {
-  double num = 0.2;
+  double num = 0.999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.0000001;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.000001;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.9;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.99;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.9999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.99999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.99999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.9999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.99999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.9999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.99999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.9999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.99999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.999999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.9999999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.99999999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = 0.999999999999999999;
+  ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
+  num = -0.9999999999999999999;
   ck_assert_ldouble_eq_tol(s21_asin(num), asin(num), S21_EPS);
 }
 END_TEST
