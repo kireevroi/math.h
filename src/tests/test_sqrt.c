@@ -67,7 +67,7 @@ START_TEST(s21_sqrt_10) {
     long double x = S21_EPS;
     if (floorl(log10l(sqrt(num))) >= 10)
       x = S21_EPS * powl(10, floorl(log10l(sqrt(num))) - 10);
-    ck_assert_ldouble_eq_tol(s21_sqrt(num), sqrt(num), x);
+    ck_assert_ldouble_eq_tol(s21_sqrt(num), sqrtl(num), x);
   }
 }
 
