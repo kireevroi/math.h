@@ -292,8 +292,8 @@ END_TEST
 
 
 START_TEST(s21_pow_39) {
-  double a = 39.213;
-  double b = 2.99;
+  double a = 3.213;
+  double b = 12.99;
   ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
 }
 END_TEST
@@ -399,59 +399,51 @@ START_TEST(s21_pow_53) {
 }
 END_TEST
 
-// START_TEST(s21_pow_54) {
-//   double a = 21.287287;
-//   double b = 7.453;
-//   ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
-// }
-// END_TEST
+START_TEST(s21_pow_54) {
+  double a = 21.287287;
+  double b = 7.453;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
 
-// START_TEST(s21_pow_55) {
-//   double a = 32.3;
-//   double b = 3.;
-//   ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
-// }
-// END_TEST
+START_TEST(s21_pow_55) {
+  double a = 32.3;
+  double b = 3.;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
 
-// START_TEST(s21_pow_56) {
-//   double a = 3971328.213;
-//   double b = 12.99;
-//   long double x = S21_EPS;
-//   if (floorl(log10l(pow(a, b))) >= 10)
-//     x = S21_EPS * pow(10, floorl(log10l(pow(a, b))) - 10);
-//   ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), x);
-// }
-// END_TEST
+START_TEST(s21_pow_56) {
+  double a = 5.3;
+  double b = 12.99;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
 
-// START_TEST(s21_pow_57) {
-//   srand(time(NULL));
-//   for (double num = S21_EPS; num <= 1000000. - S21_EPS; num += 1.06) {
-//     double a = (rand() % 10) + rand() % 10000 * S21_EPS;
-//     if (isfinite(pow(a, num))) {
-//       long double x = S21_EPS;
-//       if (floorl(log10l(pow(a, num))) >= 10)
-//         x = S21_EPS * pow(10, floorl(log10l(pow(a, num))) - 10);
-//       // printf("%Lf\n%Lf\n", s21_pow(a, num), powl(a, num));
-//       ck_assert_ldouble_eq_tol(s21_pow(a, num), powl(a, num), x);
-//     }
-//   }
-// }
-// END_TEST
+START_TEST(s21_pow_57) {
+  srand(time(NULL));
+  for (double num = S21_EPS; num <= 100. - S21_EPS; num += 1.06) {
+    double a = (rand() % 100) + rand() % 10 * S21_EPS;
+    if (pow(a, num) <1e9) {
+      long double x = S21_EPS;
+      ck_assert_ldouble_eq_tol(s21_pow(a, num), pow(a, num), x);
+    }
+  }
+}
+END_TEST
+START_TEST(s21_pow_58) {
+  double a = 34.000008;
+  double b = 6.360001;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
 
-// START_TEST(s21_pow_58) {
-//   srand(time(NULL));
-//   for (double num = S21_EPS; num <= DBL_MAX - S21_EPS;
-//        num *= (rand() % 10000) / 1000000. + 1.06) {
-//     double a = (rand() % 10) + rand() % 100 * S21_EPS;
-//     long double x = S21_EPS;
-//     if (isfinite(pow(a, num))) {
-//       if (floorl(log10l(pow(a, num))) >= 10)
-//         x = S21_EPS * pow(10, floorl(log10l(pow(a, num))) - 10);
-//       ck_assert_ldouble_eq_tol(s21_pow(a, num), pow(a, num), x);
-//     }
-//   }
-// }
-// END_TEST
+START_TEST(s21_pow_59) {
+  double a = 0.000004;
+  double b = 95.400001;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
 
 Suite *test_s21_pow(void) {
   Suite *s = suite_create("\033[45m-=S21_POW=-\033[0m");
@@ -511,11 +503,12 @@ Suite *test_s21_pow(void) {
   tcase_add_test(tc, s21_pow_51);
   tcase_add_test(tc, s21_pow_52);
   tcase_add_test(tc, s21_pow_53);
-  // tcase_add_test(tc, s21_pow_54);
-  // tcase_add_test(tc, s21_pow_55);
-  // tcase_add_test(tc, s21_pow_56);
-  // tcase_add_test(tc, s21_pow_57);
-  // tcase_add_test(tc, s21_pow_58);
+  tcase_add_test(tc, s21_pow_54);
+  tcase_add_test(tc, s21_pow_55);
+  tcase_add_test(tc, s21_pow_56);
+  tcase_add_test(tc, s21_pow_57);
+  tcase_add_test(tc, s21_pow_58);
+  tcase_add_test(tc, s21_pow_59);
 
   suite_add_tcase(s, tc);
   return s;
