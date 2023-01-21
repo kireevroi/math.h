@@ -445,6 +445,86 @@ START_TEST(s21_pow_59) {
 }
 END_TEST
 
+START_TEST(s21_pow_60) {
+  double a = -1.;
+  double b = INFINITY;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_61) {
+  double a = -1.;
+  double b = -INFINITY;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_62) {
+  double a = -1.;
+  double b = 1.;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_63) {
+  double a = -INFINITY;
+  double b = -2.;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_64) {
+  double a = -INFINITY;
+  double b = -1.;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_65) {
+  double a = -INFINITY;
+  double b = 2.;
+  ck_assert_ldouble_infinite(s21_pow(a, b));
+  ck_assert_ldouble_infinite(pow(a, b));
+}
+END_TEST
+
+START_TEST(s21_pow_66) {
+  double a = -INFINITY;
+  double b = 1.;
+  ck_assert_ldouble_infinite(s21_pow(a, b));
+  ck_assert_ldouble_infinite(pow(a, b));
+}
+END_TEST
+
+START_TEST(s21_pow_67) {
+  double a = 0.;
+  double b = 2.;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_68) {
+  double a = 0.;
+  double b = 1.1;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
+START_TEST(s21_pow_69) {
+  double a = 0.;
+  double b = -2.;
+  ck_assert_ldouble_infinite(s21_pow(a, b));
+  ck_assert_ldouble_infinite(pow(a, b));
+}
+END_TEST
+
+START_TEST(s21_pow_70) {
+  double a = 3.;
+  double b = -2.6;
+  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+}
+END_TEST
+
 Suite *test_s21_pow(void) {
   Suite *s = suite_create("\033[45m-=S21_POW=-\033[0m");
   TCase *tc = tcase_create("s21_pow_tc");
@@ -509,6 +589,17 @@ Suite *test_s21_pow(void) {
   tcase_add_test(tc, s21_pow_57);
   tcase_add_test(tc, s21_pow_58);
   tcase_add_test(tc, s21_pow_59);
+  tcase_add_test(tc, s21_pow_60);
+  tcase_add_test(tc, s21_pow_61);
+  tcase_add_test(tc, s21_pow_62);
+  tcase_add_test(tc, s21_pow_63);
+  tcase_add_test(tc, s21_pow_64);
+  tcase_add_test(tc, s21_pow_65);
+  tcase_add_test(tc, s21_pow_66);
+  tcase_add_test(tc, s21_pow_67);
+  tcase_add_test(tc, s21_pow_68);
+  tcase_add_test(tc, s21_pow_69);
+  tcase_add_test(tc, s21_pow_70);
 
   suite_add_tcase(s, tc);
   return s;

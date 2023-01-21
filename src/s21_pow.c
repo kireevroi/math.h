@@ -1,4 +1,5 @@
 #include "s21_math.h"
+
 long double pow_function(double base, double exp) {
   long double res = s21_exp(s21_log(base) * exp - 1);
   long double inc = 0.;
@@ -6,7 +7,7 @@ long double pow_function(double base, double exp) {
     inc = (s21_log(res) - s21_log(base) * exp) * res;
     if (inc != inc)
       break;
-    res = res - inc; // res = 12312312312312312
+    res = res - inc;
   }
   return res;
 }
@@ -21,6 +22,14 @@ long double s21_pow(double base, double exp) {
     } else if (base == 0. && exp > 0.) {
       if ((int) exp % 2 == 1 && f == 0.) res = base;
       else res = 0.;
+    } else if (exp < 0. && f == 0. && (int) exp % 2 == -1 && base == S21_N_INF) {
+      res = -0.;
+    } else if (exp < 0. && f == 0. && (int) exp % 2 == 0 && base == S21_N_INF) {
+      res = 0.;
+    } else if (exp > 0. && f == 0. && (int) exp % 2 == 1 && base == S21_N_INF) {
+      res = S21_N_INF;
+    } else if (exp > 0. && f == 0. && (int) exp % 2 == 0 && base == S21_N_INF) {
+      res = S21_INF;
     } else if (exp < 0. && (base == S21_INF || base == S21_N_INF)) {
       res = 0.;
     } else if (exp > 0. && (base == S21_INF || base == S21_N_INF)) {
@@ -44,14 +53,6 @@ long double s21_pow(double base, double exp) {
       res = 0.;
     } else if (s21_fabs(base) > 1. && exp == S21_INF) {
       res = S21_INF;
-    } else if (exp < 0. && f == 0. && (int) exp % 2 == -1 && base == S21_N_INF) {
-      res = -0.;
-    } else if (exp < 0. && f == 0. && (int) exp % 2 == 0 && base == S21_N_INF) {
-      res = 0.;
-    } else if (exp > 0. && f == 0. && (int) exp % 2 == -1 && base == S21_N_INF) {
-      res = -0.;
-    } else if (exp > 0. && f == 0. && (int) exp % 2 == 0 && base == S21_N_INF) {
-      res = 0.;
     } else
       res = pow_function(base, exp);
     return res;
