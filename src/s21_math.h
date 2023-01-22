@@ -8,7 +8,6 @@
 #define S21_PI 3.14159265358979324
 #define S21_N_PI -3.14159265358979324
 #define S21_EPS 1e-6
-#define S21_N_EPS -1e-6
 #define S21_INF 1.0 / 0.0
 #define S21_N_INF -1.0 / 0.0
 #define S21_NAN 0.0 / 0.0

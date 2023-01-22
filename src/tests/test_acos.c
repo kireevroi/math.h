@@ -13,7 +13,7 @@ START_TEST(s21_acos_2) {
 END_TEST
 
 START_TEST(s21_acos_3) {
-  double num = 0.144;
+  double num = -0.144;
   ck_assert_ldouble_eq_tol(s21_acos(num), acos(num), S21_EPS);
 }
 END_TEST
@@ -31,7 +31,7 @@ START_TEST(s21_acos_5) {
 END_TEST
 
 START_TEST(s21_acos_6) {
-  double num = -1;
+  double num = -1.;
   ck_assert_ldouble_eq_tol(s21_acos(num), acos(num), S21_EPS);
 }
 END_TEST
@@ -80,6 +80,18 @@ START_TEST(s21_acos_12) {
   }
 }
 
+START_TEST(s21_acos_13) {
+  double num = -2.2;
+  ck_assert_ldouble_nan(s21_acos(num));
+}
+END_TEST
+
+START_TEST(s21_acos_14) {
+  double num = 2.2;
+  ck_assert_ldouble_nan(s21_acos(num));
+}
+END_TEST
+
 Suite *test_s21_acos(void) {
   Suite *s = suite_create("\033[45m-=S21_ACOS=-\033[0m");
   TCase *tc = tcase_create("s21_acos_tc");
@@ -96,6 +108,8 @@ Suite *test_s21_acos(void) {
   tcase_add_test(tc, s21_acos_10);
   tcase_add_test(tc, s21_acos_11);
   tcase_add_test(tc, s21_acos_12);
+  tcase_add_test(tc, s21_acos_13);
+  tcase_add_test(tc, s21_acos_14);
 
   suite_add_tcase(s, tc);
   return s;

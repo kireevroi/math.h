@@ -11,7 +11,7 @@ long double s21_sqrt(double x) {
   else if (x < 0)
     ret = S21_NAN;
   else if (x > 0) {
-    __asm__(
+    __asm__ __volatile__(
         "fldl %1;"
         "fsqrt;"
         "fstpt %0;"

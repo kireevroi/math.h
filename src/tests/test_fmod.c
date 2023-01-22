@@ -147,6 +147,20 @@ START_TEST(s21_fmod_20) {
 END_TEST
 
 START_TEST(s21_fmod_21) {
+  double x = 3.;
+  double y = 0.;
+  ck_assert_ldouble_nan(s21_fmod(x, y));
+}
+END_TEST
+
+START_TEST(s21_fmod_22) {
+  double x = 9.;
+  double y = 0.;
+  ck_assert_ldouble_nan(s21_fmod(x, y));
+}
+END_TEST
+
+START_TEST(s21_fmod_23) {
   srand(time(NULL));
   for (double num = S21_EPS; num < DBL_MAX - 1;
        num *= (rand() % 10000) / 1000000. + 3.02) {
@@ -159,7 +173,7 @@ START_TEST(s21_fmod_21) {
 }
 END_TEST
 
-START_TEST(s21_fmod_22) {
+START_TEST(s21_fmod_24) {
   srand(time(NULL));
   for (double num = -DBL_MAX + S21_EPS + 1; num < -S21_EPS;
        num /= (rand() % 10000) / 1000000. + 3.02) {
@@ -198,6 +212,8 @@ Suite *test_s21_fmod(void) {
   tcase_add_test(tc, s21_fmod_20);
   tcase_add_test(tc, s21_fmod_21);
   tcase_add_test(tc, s21_fmod_22);
+  tcase_add_test(tc, s21_fmod_23);
+  tcase_add_test(tc, s21_fmod_24);
 
   suite_add_tcase(s, tc);
   return s;

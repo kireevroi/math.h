@@ -61,6 +61,12 @@ START_TEST(s21_sqrt_9) {
 END_TEST
 
 START_TEST(s21_sqrt_10) {
+  double num = -1.;
+  ck_assert_ldouble_nan(s21_sqrt(num));
+}
+END_TEST
+
+START_TEST(s21_sqrt_11) {
   srand(time(NULL));
   for (double num = S21_EPS * S21_EPS; num < DBL_MAX;
        num *= (rand() % 10000) / 1000000. + 3.02) {
@@ -85,6 +91,7 @@ Suite *test_s21_sqrt(void) {
   tcase_add_test(tc, s21_sqrt_8);
   tcase_add_test(tc, s21_sqrt_9);
   tcase_add_test(tc, s21_sqrt_10);
+  tcase_add_test(tc, s21_sqrt_11);
 
   suite_add_tcase(s, tc);
   return s;

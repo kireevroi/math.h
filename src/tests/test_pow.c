@@ -290,7 +290,6 @@ START_TEST(s21_pow_38) {
 }
 END_TEST
 
-
 START_TEST(s21_pow_39) {
   double a = 3.213;
   double b = 12.99;
@@ -424,7 +423,7 @@ START_TEST(s21_pow_57) {
   srand(time(NULL));
   for (double num = S21_EPS; num <= 100. - S21_EPS; num += 1.06) {
     double a = (rand() % 100) + rand() % 10 * S21_EPS;
-    if (pow(a, num) <1e9) {
+    if (pow(a, num) < 1e9) {
       long double x = S21_EPS;
       ck_assert_ldouble_eq_tol(s21_pow(a, num), pow(a, num), x);
     }
@@ -519,9 +518,9 @@ START_TEST(s21_pow_69) {
 END_TEST
 
 START_TEST(s21_pow_70) {
-  double a = 3.;
-  double b = -2.6;
-  ck_assert_ldouble_eq_tol(s21_pow(a, b), pow(a, b), S21_EPS);
+  double a = -INFINITY;
+  double b = -3.3;
+  ck_assert_ldouble_eq(s21_pow(a, b), pow(a, b));
 }
 END_TEST
 
